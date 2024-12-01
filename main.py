@@ -131,7 +131,7 @@ if __name__ == '__main__':
     if args.debug:
         logger.debug("Debug mode is on.")
     today = datetime.datetime.now(tz=datetime.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    yesterday = today - datetime.timedelta(days=1)
+    yesterday = today - datetime.timedelta(days=2)
     logger.info("Retrieving Zotero corpus...")
     corpus = get_zotero_corpus(args.zotero_id, args.zotero_key)
     logger.info(f"Retrieved {len(corpus)} papers from Zotero.")
@@ -139,6 +139,7 @@ if __name__ == '__main__':
     papers = []
     categories = args.arxiv_query.split(',')
     for category in categories:
+        logger.info("Finding {category}.")
         papers.extend(get_arxiv_paper(category, yesterday, today, args.debug))
     if len(papers) == 0:
         logger.info("No new papers found. Yesterday maybe a holiday and no one submit their work :). If this is not the case, please check the ARXIV_QUERY.")
