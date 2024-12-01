@@ -136,7 +136,10 @@ if __name__ == '__main__':
     corpus = get_zotero_corpus(args.zotero_id, args.zotero_key)
     logger.info(f"Retrieved {len(corpus)} papers from Zotero.")
     logger.info("Retrieving Arxiv papers...")
-    papers = get_arxiv_paper(args.arxiv_query, yesterday, today, args.debug)
+    papers = []
+    categories = args.arxiv_query.split(',')
+    for category in categories:
+        papers.extend(get_arxiv_paper(category, yesterday, today, args.debug))
     if len(papers) == 0:
         logger.info("No new papers found. Yesterday maybe a holiday and no one submit their work :). If this is not the case, please check the ARXIV_QUERY.")
         logger.info("No email will be sent. Enjoy a relaxing day!")
