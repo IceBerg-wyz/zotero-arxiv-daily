@@ -134,6 +134,7 @@ if __name__ == '__main__':
     yesterday = today - datetime.timedelta(days=5)
     logger.info("Retrieving Zotero corpus...")
     corpus = get_zotero_corpus(args.zotero_id, args.zotero_key)
+    print(corpus)
     logger.info(f"Retrieved {len(corpus)} papers from Zotero.")
     logger.info("Retrieving Arxiv papers...")
     papers = []
