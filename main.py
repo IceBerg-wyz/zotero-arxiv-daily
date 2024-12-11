@@ -133,6 +133,8 @@ if __name__ == '__main__':
     today = datetime.datetime.now(tz=datetime.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     yesterday = today - datetime.timedelta(days=5)
     logger.info("Retrieving Zotero corpus...")
+    print(000, args.zotero_id)
+    print(001, args.zotero_key)
     corpus = get_zotero_corpus(args.zotero_id, args.zotero_key)
     print(111, corpus)
     logger.info(f"Retrieved {len(corpus)} papers from Zotero.")
